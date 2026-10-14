@@ -1,0 +1,50 @@
+# Varuna Docker backend.
+#
+# From this folder ("varuna"), run:
+#   docker compose up --build
+#
+# First run downloads torch/ultralytics inside the image, so it can take
+# several minutes. After that, "docker compose up" is fast.
+#
+# Then point the desktop app (app/sync_client.py) at http://localhost:8000
+# - that is already the default, so no extra setup is needed on the same
+# computer. On another computer, set VARUNA_API to this machine's address.
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: postgres
+    volumes:
+      - varuna_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"     # optional: lets you inspect the DB with a client
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: pass
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data   # uploaded images + overlays, saved as real files here
+
+volumes:
+  varuna_db_data:

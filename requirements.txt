@@ -1,0 +1,30 @@
+# VARUNA - complete requirements (desktop app + Docker backend)
+# Python 3.12
+
+# Desktop UI
+PySide6
+
+# Deep Learning / Detection
+ultralytics==8.4.150
+torch
+torchvision
+
+# Computer Vision
+opencv-python
+numpy
+
+# Sonar file support
+pyxtf
+
+# PDF report generation
+reportlab
+
+# Backend API (server/) - only needed if you're also running the Docker
+# backend locally without Docker (e.g. `uvicorn main:app` directly)
+fastapi
+uvicorn[standard]
+python-multipart
+psycopg2-binary
+
+# Networking (backend sync from the desktop app, ngrok-tunneled requests)
+requests

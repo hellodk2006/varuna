@@ -1,0 +1,14 @@
+# Varuna detection server
+# Tested with Python 3.12
+#
+# Pulls in the model libraries (ultralytics, torch, opencv, numpy) from the
+# sonar_model folder, then adds what the web server and database need.
+ultralytics==8.4.150
+torch
+torchvision
+opencv-python-headless
+numpy
+fastapi>=0.100
+uvicorn>=0.29
+python-multipart>=0.0.9
+psycopg2-binary>=2.9

@@ -1,0 +1,27 @@
+{
+    "mine_cylinder": {
+        "level": "high",
+        "label": "HIGH ALERT",
+        "reason": "Potential unexploded ordnance / mine-like object"
+    },
+    "shipwreck": {
+        "level": "medium",
+        "label": "REVIEW",
+        "reason": "Submerged wreck - navigation and heritage significance"
+    },
+    "ghost_net": {
+        "level": "medium",
+        "label": "REVIEW",
+        "reason": "Abandoned fishing gear - entanglement and marine-life hazard"
+    },
+    "submarine_pipeline": {
+        "level": "low",
+        "label": "INFO",
+        "reason": "Known infrastructure type - verify against charted pipelines"
+    },
+    "crab_pot": {
+        "level": "low",
+        "label": "INFO",
+        "reason": "Routine fishing equipment"
+    }
+}
